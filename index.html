@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tap2Surprise Studio | Valentine Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2024/02/14/audio_c8c8a73467.mp3?filename=romantic-piano-amp-strings-10711.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Toggle -->
+    <button id="soundToggle" class="sound-toggle hidden">
+        <span class="sound-icon">🔊</span>
+    </button>
+
+    <!-- Particle Container -->
+    <div id="particles" class="particles"></div>
+
+    <!-- Page Container -->
+    <div class="page-container">
+
+        <!-- PAGE 1: Landing Question -->
+        <section id="page1" class="page active">
+            <div class="page-content">
+                <div class="glass-card">
+                    <p class="brand-intro">Tap2Surprise Studio presents…</p>
+                    <h1 class="main-title">Do you want to be my Valentine? 💌</h1>
+                    <p class="subtext">Don't overthink it. Just tap.</p>
+                    <div class="button-container">
+                        <button id="yesBtn" class="btn btn-primary">
+                            <span class="btn-icon">💌</span>
+                            <span>YES</span>
+                        </button>
+                        <button id="noBtn" class="btn btn-secondary">
+                            <span class="btn-icon">🙈</span>
+                            <span>NO</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+        <!-- PAGE 2: Reveal Hub -->
+        <section id="page2" class="page">
+            <div class="page-content">
+                <div class="glass-card">
+                    <h1 class="reveal-title">Yesss. That was the correct answer. ✨</h1>
+                    <p class="reveal-subtitle">You just unlocked a premium surprise demo.</p>
+                </div>
+
+                <div class="gift-cards">
+                    <button class="gift-card" data-gift="memory">
+                        <div class="gift-icon">🎁</div>
+                        <div class="gift-label">Memory</div>
+                    </button>
+                    <button class="gift-card" data-gift="letter">
+                        <div class="gift-icon">💌</div>
+                        <div class="gift-label">Letter</div>
+                    </button>
+                    <button class="gift-card" data-gift="surprise">
+                        <div class="gift-icon">✨</div>
+                        <div class="gift-label">Surprise Mode</div>
+                    </button>
+                </div>
+
+                <div class="progress-indicator">
+                    <span class="progress-text">Demo: <span id="progressCount">0</span>/3 unlocked</span>
+                </div>
+
+                <button id="toFinalCta" class="btn btn-primary btn-large">
+                    Continue → Final Surprise
+                </button>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+        <!-- GIFT 1: Memory -->
+        <section id="gift1" class="page gift-page">
+            <div class="page-content">
+                <div class="glass-card gift-card-page">
+                    <div class="memory-image-container">
+                        <img src="https://i.imgur.com/Zi2yQep.jpeg" alt="Special Memory" class="memory-image">
+                    </div>
+                    <p class="gift-text">"Some surprises don't need a thousand words.<br>Just the right moment… and the right feeling."</p>
+                    <p class="gift-note">(This is a demo image. Your page can include your own photos.)</p>
+                    <button class="btn btn-secondary back-btn" data-back="page2">
+                        ← Back to Gifts
+                    </button>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+        <!-- GIFT 2: Letter -->
+        <section id="gift2" class="page gift-page">
+            <div class="page-content">
+                <div class="glass-card gift-card-page">
+                    <div class="letter-paper">
+                        <p id="letterText" class="letter-text"></p>
+                    </div>
+                    <p class="gift-note">"Now imagine this… made for someone you care about."</p>
+                    <button class="btn btn-secondary back-btn" data-back="page2">
+                        ← Back to Gifts
+                    </button>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+        <!-- GIFT 3: Surprise Mode -->
+        <section id="gift3" class="page gift-page surprise-mode">
+            <div class="page-content">
+                <div class="glass-card gift-card-page">
+                    <h2 class="surprise-title">Valentine Energy</h2>
+                    <div class="energy-counter">
+                        <span id="energyPercent">0</span>%
+                    </div>
+                    <div class="result-message hidden" id="resultMessage">
+                        <p class="result-title">Result: Unforgettable.</p>
+                        <p class="result-subtitle">This is what a custom Tap2Surprise page feels like.</p>
+                        <button class="btn btn-primary" onclick="showPage('final')">
+                            Create Yours 💌
+                        </button>
+                    </div>
+                    <button class="btn btn-secondary back-btn" data-back="page2">
+                        ← Back to Gifts
+                    </button>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+        <!-- PAGE 3: Final CTA -->
+        <section id="page3" class="page">
+            <div class="page-content">
+                <div class="glass-card">
+                    <h1 class="cta-title">Want a custom Valentine page like this?</h1>
+                    <p class="cta-subtitle">Made with detail & intention. Designed to impress.</p>
+                </div>
+
+                <div class="packages">
+                    <div class="package-card">
+                        <h3>Basic Surprise</h3>
+                        <ul class="package-features">
+                            <li>Custom landing page</li>
+                            <li>Your message</li>
+                            <li>Mobile optimized</li>
+                        </ul>
+                    </div>
+                    <div class="package-card">
+                        <h3>Premium Surprise</h3>
+                        <ul class="package-features">
+                            <li>Everything in Basic</li>
+                            <li>Photo gallery</li>
+                            <li>Music & animations</li>
+                        </ul>
+                    </div>
+                    <div class="package-card">
+                        <h3>Ultimate Surprise</h3>
+                        <ul class="package-features">
+                            <li>All Premium features</li>
+                            <li>Interactive games</li>
+                            <li>Priority delivery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cta-block">
+                    <p class="cta-instruction">DM us on Instagram to order.<br>We'll ask a few quick questions and build your page.</p>
+                    <div class="cta-buttons">
+                        <a href="https://instagram.com" target="_blank" class="btn btn-primary">
+                            💬 DM to Order
+                        </a>
+                        <button id="viewPortfolio" class="btn btn-secondary">
+                            ✨ View Portfolio
+                        </button>
+                    </div>
+                </div>
+
+                <div class="portfolio-section hidden" id="portfolioSection">
+                    <h3>Portfolio</h3>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder gradient-1"></div>
+                            <span>Example 1</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder gradient-2"></div>
+                            <span>Example 2</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder gradient-3"></div>
+                            <span>Example 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <span class="brand-mark">Tap2Surprise Studio ✨</span>
+            </footer>
+        </section>
+
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
